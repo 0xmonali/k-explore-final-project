@@ -31,3 +31,4 @@ Sample events are based on publicly listed KIIT society programmes. Edit the `EV
 
 ## Deploy
 GitHub Pages: Settings > Pages > branch `main`, root. Netlify or Vercel: import the repo, no build command.
+# k-explore-final-project
