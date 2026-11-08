@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>K Explore – Campus events, organised</title>
+<meta name="description" content="Browse KIIT society events on a timeline, find them on the campus map and register in under a minute.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="#top"><span class="mark">K</span>Explore</a>
+  <nav aria-label="Main">
+    <a href="#events">Events</a><a href="#map">Campus map</a>
+    <a href="#mine">My passes<span id="regCount" class="badge">0</span></a>
+    <button id="openCmd" class="ghost-btn" aria-label="Search events">Search <kbd>Ctrl K</kbd></button>
+    <button id="theme" class="icon" aria-label="Switch between dark and light mode">◐</button>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero-copy">
+      <h1>Find your next event on campus.</h1>
+      <p>Society events, fests and workshops in one place. See what&rsquo;s coming up, spot it on the map and register in under a minute.</p>
+      <div class="actions"><a class="btn" href="#events">Browse events</a><a class="btn ghost" href="#map">Open campus map</a></div>
+      <p id="stats" class="stats"></p>
+    </div>
+    <aside class="board" aria-label="Coming up" aria-live="off">
+      <div class="board-head"><span>Coming up</span><span class="live"><i></i>Live countdown</span></div>
+      <div id="board"></div>
+    </aside>
+  </section>
+
+  <section id="events" class="wrap">
+    <div class="sec-head"><h2>Events</h2>
+      <div class="seg" id="view" role="group" aria-label="Layout"><button data-view="grid" aria-pressed="true">Grid</button><button data-view="timeline" aria-pressed="false">Timeline</button></div>
+    </div>
+    <div class="tools">
+      <input id="q" type="search" placeholder="Search by name, society or venue" aria-label="Search events">
+      <select id="soc" aria-label="Filter by society"></select>
+      <select id="intent" aria-label="Filter by what you want to do"></select>
+    </div>
+    <div id="chips" class="chips" role="group" aria-label="Filter by category"></div>
+    <p id="count" class="muted" aria-live="polite"></p>
+    <div id="grid" class="grid"></div>
+    <p id="empty" class="muted" hidden>No events match. Clear the search or pick another category.</p>
+  </section>
+
+  <section id="map" class="wrap">
+    <div class="sec-head"><div><h2>Campus map</h2><p class="muted">A stylised plan, not to scale. Hover a pin for the event, select it to open.</p></div></div>
+    <div class="mapbox">
+      <svg viewBox="0 0 800 440" role="img" aria-label="Stylised campus map with event pins">
+        <defs><pattern id="grid-bg" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" class="m-grid"/></pattern></defs>
+        <rect width="800" height="440" fill="#0c1a2b"/><rect width="800" height="440" fill="url(#grid-bg)"/>
+        <path class="m-road" d="M-10 255Q200 185 400 245T810 205"/><path class="m-road" d="M390-10Q430 200 365 450"/>
+        <rect class="m-bld" x="70" y="55" width="150" height="95" rx="6"/><rect class="m-bld" x="255" y="30" width="130" height="85" rx="6"/><rect class="m-bld" x="80" y="295" width="190" height="95" rx="6"/>
+        <ellipse class="m-zone" cx="570" cy="105" rx="140" ry="72"/><ellipse class="m-zone" cx="625" cy="335" rx="125" ry="62"/><path class="m-line" d="M625 273V397M500 335H750"/>
+        <g class="m-label"><text x="145" y="172" text-anchor="middle">Lab block</text><text x="320" y="135" text-anchor="middle">Campus 15 open auditorium</text><text x="175" y="412" text-anchor="middle">Library hall</text><text x="570" y="195" text-anchor="middle">Central lawn</text><text x="625" y="415" text-anchor="middle">Sports ground</text></g>
+        <g id="pins"></g>
+      </svg>
+      <div id="tip" class="tip" hidden></div>
+    </div>
+  </section>
+
+  <section id="mine" class="wrap">
+    <div class="sec-head"><h2>My passes</h2></div>
+    <div id="list" class="passes"></div>
+    <p id="none" class="muted">No passes yet. Open an event and register to get one.</p>
+  </section>
+</main>
+<footer class="wrap muted">K Explore &middot; Sample events based on publicly listed KIIT society programmes. Replace with official details before publishing.</footer>
+<dialog id="dlg" aria-labelledby="dTitle"></dialog>
+<dialog id="cmd" aria-label="Search events"><input id="cq" placeholder="Search events, societies, venues…" aria-label="Search"><ul id="cres" role="listbox"></ul></dialog>
+<script src="script.js"></script>
+</body>
+</html>
